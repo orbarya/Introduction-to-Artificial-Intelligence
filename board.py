@@ -187,7 +187,7 @@ class Board:
         out_str = []
         for row in range(self.board_h):
             for col in range(self.board_w):
-                if self.state[col, row] == -1:
+                if self.state[row, col] == -1:
                     out_str.append('_')
                 else:
                     out_str.append(str(self.state[col, row]))

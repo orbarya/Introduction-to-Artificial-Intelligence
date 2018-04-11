@@ -3,6 +3,8 @@ In search.py, you will implement generic search algorithms
 """
 
 import util
+import queue
+
 
 
 class SearchProblem:
@@ -48,8 +50,23 @@ class SearchProblem:
         """
         util.raiseNotDefined()
 
+def visit_node(problem, parents, visited, to_visit, current_state):
+    descendants = problem.get_successors(current_state)
+    # descendants.reverse()
+    for descendant in descendants:
+        if descendant[0] not in parents:
+            parents[descendant[0]] = (current_state, descendant[1], descendant[2])
+    to_visit += descendants
+    visited.add(current_state)
+    return parents, visited, to_visit
 
-
+def get_actions_list(parents, current_state, start):
+    actions = []
+    while current_state is not start:
+        actions.append(parents[current_state][1])
+        current_state = parents[current_state][0]
+    actions.reverse()   
+    return actions
 
 def depth_first_search(problem):
     """
@@ -61,12 +78,26 @@ def depth_first_search(problem):
     To get started, you might want to try some of these simple commands to
     understand the search problem that is being passed in:
 
-    print("Start:", problem.getStartState())
-    print("Is the start a goal?", problem.isGoalState(problem.getStartState()))
-    print("Start's successors:", problem.getSuccessors(problem.getStartState()))
+    print("Start:", problem.get_start_state())
+    print("Is the start a goal?", problem.is_goal_state(problem.get_start_state()))
+    print("Start's successors:", problem.get_successors(problem.get_start_state()))
     """
     "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    start = problem.get_start_state()
+    current_state = start 
+    parents = {}
+    visited = set()
+    to_visit = []
+    parents, visited, to_visit = visit_node(problem, parents, visited, to_visit, current_state)
+    
+    while(len(to_visit) > 0 and not problem.is_goal_state(current_state)):
+        current_state = to_visit.pop()[0]
+        if current_state not in visited:
+            parents, visited, to_visit = visit_node(problem, parents, visited, to_visit, current_state)
+    
+    # print(problem.is_goal_state(current_state))
+    return get_actions_list(parents, current_state, start)
+    # util.raiseNotDefined()
 
 
 def breadth_first_search(problem):
@@ -74,7 +105,21 @@ def breadth_first_search(problem):
     Search the shallowest nodes in the search tree first.
     """
     "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    start = problem.get_start_state()
+    current_state = start 
+    parents = {current_state: 'start'}
+    visited = set()
+    to_visit = []
+    parents, visited, to_visit = visit_node(problem, parents, visited, to_visit, current_state)
+    
+    while(len(to_visit) > 0 and not problem.is_goal_state(current_state)):
+        current_state = to_visit.pop(0)[0]
+        if current_state not in visited:
+            parents, visited, to_visit = visit_node(problem, parents, visited, to_visit, current_state)
+    
+    # print(problem.is_goal_state(current_state))
+    return get_actions_list(parents, current_state, start)
+    # util.raiseNotDefined()
 
 
 def uniform_cost_search(problem):
