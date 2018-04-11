@@ -57,7 +57,7 @@ class BlokusFillProblem(SearchProblem):
 class BlokusCornersProblem(SearchProblem):
     def __init__(self, board_w, board_h, piece_list, starting_point=(0, 0)):
         self.expanded = 0
-        "*** YOUR CODE HERE ***"
+        self.board = Board(board_w, board_h, 1, piece_list, starting_point)
 
     def get_start_state(self):
         """
@@ -66,8 +66,11 @@ class BlokusCornersProblem(SearchProblem):
         return self.board
 
     def is_goal_state(self, state):
-        "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        return state.state[0, 0] >= 0 and \
+               state.state[self.board.board_h - 1, 0] >= 0 and \
+               state.state[0, self.board.board_w - 1] >= 0 and \
+               state.state[self.board.board_h - 1,self.board.board_w - 1] >= 0
+        # util.raiseNotDefined()
 
     def get_successors(self, state):
         """
@@ -84,14 +87,21 @@ class BlokusCornersProblem(SearchProblem):
         return [(state.do_move(0, move), move, move.piece.get_num_tiles()) for move in state.get_legal_moves(0)]
 
     def get_cost_of_actions(self, actions):
+        print('hello')
         """
         actions: A list of actions to take
 
         This method returns the total cost of a particular sequence of actions.  The sequence must
         be composed of legal moves
         """
-        "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        board = Board(self.board.board_w, self.board.board_h, 1, self.board.piece_list)
+        empty_board_tile_num = np.abs(np.sum(board.state))
+        for action in actions:
+            board.add_move(0,action)
+        actions_costs = empty_board_tile_num - np.abs(np.sum(board.state))
+        return actions_costs
+
+        # util.raiseNotDefined()
 
 
 def blokus_corners_heuristic(state, problem):
