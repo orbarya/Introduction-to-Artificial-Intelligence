@@ -126,7 +126,6 @@ def uniform_cost_search(problem):
     """
     Search the node of least total cost first.
     """
-    evaluation_function = lambda g_score, item: g_score[item]
     return best_first_search(problem, null_heuristic)
 
 
