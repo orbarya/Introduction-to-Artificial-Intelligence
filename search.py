@@ -1,10 +1,7 @@
 """
 In search.py, you will implement generic search algorithms
 """
-
 import util
-import queue
-
 
 
 class SearchProblem:
@@ -50,15 +47,14 @@ class SearchProblem:
         """
         util.raiseNotDefined()
 
-def visit_node(problem, parents, visited, to_visit, current_state):
+def visit_node(problem, parents, visited, current_state):
     descendants = problem.get_successors(current_state)
     # descendants.reverse()
     for descendant in descendants:
         if descendant[0] not in parents:
             parents[descendant[0]] = (current_state, descendant[1], descendant[2])
-    to_visit += descendants
     visited.add(current_state)
-    return parents, visited, to_visit
+    return parents, visited, descendants
 
 def get_actions_list(parents, current_state, start):
     actions = []
@@ -93,8 +89,9 @@ def depth_first_search(problem):
     while(len(to_visit) > 0 and not problem.is_goal_state(current_state)):
         current_state = to_visit.pop()[0]
         if current_state not in visited:
-            parents, visited, to_visit = visit_node(problem, parents, visited, to_visit, current_state)
-    
+            parents, visited, new_nodes = visit_node(problem, parents, visited, to_visit, current_state)
+    to_visit += new_nodes
+
     # print(problem.is_goal_state(current_state))
     return get_actions_list(parents, current_state, start)
     # util.raiseNotDefined()
@@ -110,9 +107,12 @@ def breadth_first_search(problem):
     parents = {current_state: 'start'}
     visited = set()
     to_visit = []
-    parents, visited, to_visit = visit_node(problem, parents, visited, to_visit, current_state)
+    parents, visited, new_nodes = visit_node(problem, parents, visited, to_visit, current_state)
+    to_visit += new_nodes
     
-    while(len(to_visit) > 0 and not problem.is_goal_state(current_state)):
+    while not problem.is_goal_state(current_state):
+        if len(to_visit) > 0:
+            return []
         current_state = to_visit.pop(0)[0]
         if current_state not in visited:
             parents, visited, to_visit = visit_node(problem, parents, visited, to_visit, current_state)
@@ -126,8 +126,8 @@ def uniform_cost_search(problem):
     """
     Search the node of least total cost first.
     """
-    "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    evaluation_function = lambda g_score, item: g_score[item]
+    return best_first_search(problem, null_heuristic)
 
 
 def null_heuristic(state, problem=None):
@@ -142,9 +142,48 @@ def a_star_search(problem, heuristic=null_heuristic):
     """
     Search the node that has the lowest combined cost and heuristic first.
     """
-    "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    return best_first_search(problem, heuristic)
 
+
+def best_first_search (problem, evaluation_function, heuristic=null_heuristic):
+    initial_state = problem.get_start_state()
+    explored_set = set()
+    in_frontier = set()
+    came_from = {}
+    g_score = {}
+    g_score[initial_state] = 0
+    f_score = {}
+    g_score[initial_state] = heuristic(initial_state, problem)
+
+    frontier = util.PriorityQueueWithFunction(lambda item: evaluation_function(g_score, item))
+    frontier.push(initial_state)
+    in_frontier.add(initial_state)
+
+    while not frontier.isEmpty():
+        current_state = frontier.pop()
+        in_frontier.remove(current_state)
+
+        if current_state in explored_set:
+            continue
+
+        if problem.is_goal_state(current_state):
+            return get_actions_list(came_from, current_state, initial_state)
+        explored_set.add(current_state)
+
+        neighbors = problem.get_successors(current_state)
+        for neighbor in neighbors:
+            if neighbor[0] in explored_set:
+                continue
+            tentative_g_score = g_score[current_state] + neighbor[2]
+            if tentative_g_score >= g_score.get(neighbor[0], float("inf")):
+                continue
+
+            came_from[neighbor[0]] = [current_state, neighbor[1]]
+            g_score[neighbor[0]] = tentative_g_score
+            #if neighbor[0] not in frontier:
+            frontier.push(neighbor[0])
+            in_frontier.add(neighbor[0])
+    return []
 
 
 # Abbreviations
