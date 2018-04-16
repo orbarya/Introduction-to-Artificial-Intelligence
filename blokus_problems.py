@@ -106,13 +106,25 @@ class BlokusCornersProblem(SearchProblem):
         return actions_costs
 
         # util.raiseNotDefined()
-def diagonal_distance_to_corners(size):
-    """
-    Returns the distance from each cell to all 4 corners in diagonal block size 1 distance.
-    i.e. how many blocks of 1 cell we need to place on the board in a legal way.
-    :param size:
-    :return:
-    """
+
+def is_point_area_empty(state, radius, i, j):
+    from_i = max(0, i - radius)
+    from_j = max(0, j - radius)
+    to_i = min(state.board_h, i + radius)
+    to_j = min(state.board_w, j + radius)
+    return not np.any(state.state[from_i:to_i, from_j:to_j] + 1)
+
+
+def distanse_to_points(state, problem, points):
+    distance_from_corners = 0
+    max_radius = max(state.board_w, state.board_h) 
+    radius = 0
+    for (i,j) in points:
+        while(is_point_area_empty(state, radius, i, j) and radius < max_radius):
+            radius += 1
+        distance_from_corners += radius
+        radius = 0
+    return distance_from_corners
 
 
 def blokus_corners_heuristic(state, problem):
@@ -128,7 +140,7 @@ def blokus_corners_heuristic(state, problem):
     inadmissible or inconsistent heuristics may find optimal solutions, so be careful.
     """
     "*** YOUR CODE HERE ***"
-    state
+    return distanse_to_points(state, problem, [(state.board_h-1, state.board_w-1), (state.board_h-1, 0), (0, state.board_w-1), (0,0)])
 
 
 class BlokusCoverProblem(SearchProblem):
@@ -178,9 +190,7 @@ class BlokusCoverProblem(SearchProblem):
 
 
 def blokus_cover_heuristic(state, problem):
-    "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
-
+    return distanse_to_points(state, problem, problem.targets)
 
 class ClosestLocationSearch:
     """
