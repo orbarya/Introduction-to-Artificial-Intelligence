@@ -58,7 +58,6 @@ def visit_node(problem, parents, visited, to_visit, current_state):
     visited.add(current_state)
     return parents, visited, to_visit
 
-
 def get_actions_list(parents, current_state, start):
     actions = []
     while current_state is not start:
@@ -70,13 +69,10 @@ def get_actions_list(parents, current_state, start):
 def depth_first_search(problem):
     """
     Search the deepest nodes in the search tree first.
-
     Your search algorithm needs to return a list of actions that reaches
     the goal. Make sure to implement a graph search algorithm.
-
     To get started, you might want to try some of these simple commands to
     understand the search problem that is being passed in:
-
     print("Start:", problem.get_start_state())
     print("Is the start a goal?", problem.is_goal_state(problem.get_start_state()))
     print("Start's successors:", problem.get_successors(problem.get_start_state()))
@@ -92,9 +88,8 @@ def depth_first_search(problem):
     while(len(to_visit) > 0 and not problem.is_goal_state(current_state)):
         current_state = to_visit.pop()[0]
         if current_state not in visited:
-            parents, visited, new_nodes = visit_node(problem, parents, visited, to_visit, current_state)
-    to_visit += new_nodes
-
+            parents, visited, to_visit = visit_node(problem, parents, visited, to_visit, current_state)
+    
     # print(problem.is_goal_state(current_state))
     return get_actions_list(parents, current_state, start)
     # util.raiseNotDefined()
@@ -110,12 +105,9 @@ def breadth_first_search(problem):
     parents = {current_state: 'start'}
     visited = set()
     to_visit = []
-    parents, visited, new_nodes = visit_node(problem, parents, visited, to_visit, current_state)
-    to_visit += new_nodes
+    parents, visited, to_visit = visit_node(problem, parents, visited, to_visit, current_state)
     
-    while not problem.is_goal_state(current_state):
-        if len(to_visit) > 0:
-            return []
+    while(len(to_visit) > 0 and not problem.is_goal_state(current_state)):
         current_state = to_visit.pop(0)[0]
         if current_state not in visited:
             parents, visited, to_visit = visit_node(problem, parents, visited, to_visit, current_state)
