@@ -1,3 +1,7 @@
+import functools
+
+import numpy as np
+
 from board import Board
 from search import SearchProblem, ucs
 import util
@@ -102,6 +106,13 @@ class BlokusCornersProblem(SearchProblem):
         return actions_costs
 
         # util.raiseNotDefined()
+def diagonal_distance_to_corners(size):
+    """
+    Returns the distance from each cell to all 4 corners in diagonal block size 1 distance.
+    i.e. how many blocks of 1 cell we need to place on the board in a legal way.
+    :param size:
+    :return:
+    """
 
 
 def blokus_corners_heuristic(state, problem):
@@ -117,14 +128,14 @@ def blokus_corners_heuristic(state, problem):
     inadmissible or inconsistent heuristics may find optimal solutions, so be careful.
     """
     "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    state
 
 
 class BlokusCoverProblem(SearchProblem):
     def __init__(self, board_w, board_h, piece_list, starting_point=(0, 0), targets=[(0, 0)]):
         self.targets = targets.copy()
         self.expanded = 0
-        "*** YOUR CODE HERE ***"
+        self.board = Board(board_w, board_h, 1, piece_list, starting_point)
 
     def get_start_state(self):
         """
@@ -133,8 +144,9 @@ class BlokusCoverProblem(SearchProblem):
         return self.board
 
     def is_goal_state(self, state):
-        "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        return functools.reduce((lambda is_goal, target: is_goal and (state.get_position(target[0],
+                                target[1])) != -1), self.targets,
+                                True)
 
     def get_successors(self, state):
         """
@@ -157,8 +169,12 @@ class BlokusCoverProblem(SearchProblem):
         This method returns the total cost of a particular sequence of actions.  The sequence must
         be composed of legal moves
         """
-        "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        board = Board(self.board.board_w, self.board.board_h, 1, self.board.piece_list)
+        empty_board_tile_num = np.abs(np.sum(board.state))
+        for action in actions:
+            board.add_move(0,action)
+        actions_costs = empty_board_tile_num - np.abs(np.sum(board.state))
+        return actions_costs
 
 
 def blokus_cover_heuristic(state, problem):
