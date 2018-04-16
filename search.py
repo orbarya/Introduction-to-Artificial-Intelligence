@@ -47,14 +47,17 @@ class SearchProblem:
         """
         util.raiseNotDefined()
 
-def visit_node(problem, parents, visited, current_state):
+
+def visit_node(problem, parents, visited, to_visit, current_state):
     descendants = problem.get_successors(current_state)
     # descendants.reverse()
     for descendant in descendants:
         if descendant[0] not in parents:
             parents[descendant[0]] = (current_state, descendant[1], descendant[2])
+    to_visit += descendants
     visited.add(current_state)
-    return parents, visited, descendants
+    return parents, visited, to_visit
+
 
 def get_actions_list(parents, current_state, start):
     actions = []
