@@ -144,7 +144,7 @@ def a_star_search(problem, heuristic=null_heuristic):
     return best_first_search(problem, heuristic)
 
 
-def best_first_search (problem, evaluation_function, heuristic=null_heuristic):
+def best_first_search(problem, heuristic=null_heuristic):
     initial_state = problem.get_start_state()
     explored_set = set()
     in_frontier = set()
@@ -154,7 +154,7 @@ def best_first_search (problem, evaluation_function, heuristic=null_heuristic):
     f_score = {}
     g_score[initial_state] = heuristic(initial_state, problem)
 
-    frontier = util.PriorityQueueWithFunction(lambda item: evaluation_function(g_score, item))
+    frontier = util.PriorityQueueWithFunction(lambda item: g_score[item] + heuristic(item, problem))
     frontier.push(initial_state)
     in_frontier.add(initial_state)
 
