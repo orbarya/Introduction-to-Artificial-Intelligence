@@ -4,6 +4,7 @@ import numpy as np
 
 from board import Board
 from search import SearchProblem, ucs
+from search import a_star_search
 import util
 
 
@@ -115,7 +116,7 @@ def is_point_area_empty(state, radius, i, j):
     return not np.any(state.state[from_i:to_i, from_j:to_j] + 1)
 
 
-def distanse_to_points(state, problem, points):
+def distanse_to_points(state, points):
     distance_from_corners = 0
     max_radius = max(state.board_w, state.board_h) 
     radius = 0
@@ -140,7 +141,7 @@ def blokus_corners_heuristic(state, problem):
     inadmissible or inconsistent heuristics may find optimal solutions, so be careful.
     """
     "*** YOUR CODE HERE ***"
-    return distanse_to_points(state, problem, [(state.board_h-1, state.board_w-1), (state.board_h-1, 0), (0, state.board_w-1), (0,0)])
+    return distanse_to_points(state, [(state.board_h-1, state.board_w-1), (state.board_h-1, 0), (0, state.board_w-1), (0,0)])
 
 
 class BlokusCoverProblem(SearchProblem):
@@ -190,9 +191,58 @@ class BlokusCoverProblem(SearchProblem):
 
 
 def blokus_cover_heuristic(state, problem):
-    return distanse_to_points(state, problem, problem.targets)
+    return distanse_to_points(state, problem.targets)
+
+
+class BlokusExistingBoardCoverProblem(SearchProblem):
+    def __init__(self, board, targets):
+        self.targets = targets.copy()
+        self.expanded = 0
+        self.board = board.__copy__()
+
+    def get_start_state(self):
+        """
+        Returns the start state for the search problem
+        """
+        return self.board
+
+    def is_goal_state(self, state):
+        return functools.reduce((lambda is_goal, target: is_goal and (state.get_position(target[0],
+                                target[1])) != -1), self.targets,
+                                True)
+
+    def get_successors(self, state):
+        """
+        state: Search state
+
+        For a given state, this should return a list of triples,
+        (successor, action, stepCost), where 'successor' is a
+        successor to the current state, 'action' is the action
+        required to get there, and 'stepCost' is the incremental
+        cost of expanding to that successor
+        """
+        # Note that for the search problem, there is only one player - #0
+        self.expanded = self.expanded + 1
+        return [(state.do_move(0, move), move, move.piece.get_num_tiles()) for move in state.get_legal_moves(0)]
+
+    def get_cost_of_actions(self, actions):
+        """
+        actions: A list of actions to take
+
+        This method returns the total cost of a particular sequence of actions.  The sequence must
+        be composed of legal moves
+        """
+        board = Board(self.board.board_w, self.board.board_h, 1, self.board.piece_list)
+        empty_board_tile_num = np.abs(np.sum(board.state))
+        for action in actions:
+            board.add_move(0, action)
+        actions_costs = empty_board_tile_num - np.abs(np.sum(board.state))
+        return actions_costs
+
 
 class ClosestLocationSearch:
+
+
     """
     In this problem you have to cover all given positions on the board,
     but the objective is speed, not optimality.
@@ -201,7 +251,9 @@ class ClosestLocationSearch:
     def __init__(self, board_w, board_h, piece_list, starting_point=(0, 0), targets=(0, 0)):
         self.expanded = 0
         self.targets = targets.copy()
-        "*** YOUR CODE HERE ***"
+        self.board = Board(board_w, board_h, 1, piece_list, starting_point)
+        self.piece_list = piece_list
+        self.starting_point = starting_point
 
     def get_start_state(self):
         """
@@ -228,9 +280,45 @@ class ClosestLocationSearch:
 
         return backtrace
         """
-        "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        current_state = self.board.__copy__()
+        backtrace = []
+        remaining_targets = self.targets.copy()
+        while len(remaining_targets) > 0:
+            target = self.find_closest_target(current_state, remaining_targets)
+            actions = self.cover_closest_target(current_state, target)
+            for action in actions:
+                current_state.add_move(0, action)
+            backtrace.extend(actions)
+            remaining_targets.remove(target)
+        return backtrace
 
+    def find_closest_target(self, current_state, remaining_targets):
+        """
+
+        :param current_state:
+        :param remaining_targets:
+        :return:
+        """
+        min_distance = np.inf
+        closest_target = None
+        for target in remaining_targets:
+            d = distanse_to_points(current_state, [target])
+            if d < min_distance:
+                closest_target = target
+                min_distance = d
+        return closest_target
+
+    def cover_closest_target(self, current_state, target):
+        """
+
+        :param current_state:
+        :param target:
+        :return:
+        """
+        target_cover_problem = BlokusExistingBoardCoverProblem(current_state, [target])
+        actions = a_star_search(target_cover_problem, blokus_cover_heuristic)
+        self.expanded += target_cover_problem.expanded
+        return actions
 
 
 class MiniContestSearch:
