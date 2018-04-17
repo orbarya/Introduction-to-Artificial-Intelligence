@@ -170,7 +170,7 @@ def blokus_corners_heuristic(state, problem):
 
 
 def flip_targets (targets):
-    return list(map(lambda target: (target[1], target[0])))
+    return list(map(lambda target: (target[1], target[0]), targets))
 
 
 class BlokusCoverProblem(SearchProblem):
@@ -225,7 +225,7 @@ def blokus_cover_heuristic(state, problem):
 
 class BlokusExistingBoardCoverProblem(SearchProblem):
     def __init__(self, board, targets):
-        self.targets = flip_targets(targets)
+        self.targets = targets.copy()
         self.expanded = 0
         self.board = board.__copy__()
 
@@ -279,7 +279,7 @@ class ClosestLocationSearch:
 
     def __init__(self, board_w, board_h, piece_list, starting_point=(0, 0), targets=(0, 0)):
         self.expanded = 0
-        self.targets = targets.copy()
+        self.targets = flip_targets(targets)
         self.board = Board(board_w, board_h, 1, piece_list, starting_point)
         self.piece_list = piece_list
         self.starting_point = starting_point
