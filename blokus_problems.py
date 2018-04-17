@@ -137,6 +137,16 @@ def bad_state(state, points):
             return True
     return False
 
+# def distanse_to_points(state, points):
+#     distance_from_corners = 0
+#     max_radius = max(state.board_w, state.board_h)
+#     radius = 0
+#     for (i,j) in points:
+#         while(is_point_area_empty(state, radius, i, j) and radius < max_radius):
+#             radius += 1
+#         distance_from_corners += radius
+#         radius = 0
+#     return distance_from_corners
 
 def distanse_to_points(state, points):
     distance_from_corners = 0
@@ -175,7 +185,7 @@ def flip_targets (targets):
 
 class BlokusCoverProblem(SearchProblem):
     def __init__(self, board_w, board_h, piece_list, starting_point=(0, 0), targets=[(0, 0)]):
-        self.targets = flip_targets()
+        self.targets = flip_targets(targets)
         self.expanded = 0
         self.board = Board(board_w, board_h, 1, piece_list, starting_point)
 
@@ -186,8 +196,8 @@ class BlokusCoverProblem(SearchProblem):
         return self.board
 
     def is_goal_state(self, state):
-        return functools.reduce((lambda is_goal, target: is_goal and (state.get_position(target[0],
-                                target[1])) != -1), self.targets,
+        return functools.reduce((lambda is_goal, target: is_goal and (state.get_position(target[1],
+                                target[0])) != -1), self.targets,
                                 True)
 
     def get_successors(self, state):
@@ -236,8 +246,8 @@ class BlokusExistingBoardCoverProblem(SearchProblem):
         return self.board
 
     def is_goal_state(self, state):
-        return functools.reduce((lambda is_goal, target: is_goal and (state.get_position(target[0],
-                                target[1])) != -1), self.targets,
+        return functools.reduce((lambda is_goal, target: is_goal and (state.get_position(target[1],
+                                target[0])) != -1), self.targets,
                                 True)
 
     def get_successors(self, state):
