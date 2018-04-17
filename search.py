@@ -50,7 +50,7 @@ class SearchProblem:
 
 def visit_node(problem, parents, visited, to_visit, current_state):
     descendants = problem.get_successors(current_state)
-    descendants.reverse()
+    #descendants.reverse()
     for descendant in descendants:
         if descendant[0] not in parents:
             parents[descendant[0]] = (current_state, descendant[1], descendant[2])

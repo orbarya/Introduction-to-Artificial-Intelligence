@@ -108,6 +108,7 @@ class BlokusCornersProblem(SearchProblem):
 
         # util.raiseNotDefined()
 
+
 def is_point_area_empty(state, radius, i, j):
     from_i = max(0, i - radius)
     from_j = max(0, j - radius)
@@ -116,15 +117,39 @@ def is_point_area_empty(state, radius, i, j):
     return not np.any(state.state[from_i:to_i, from_j:to_j] + 1)
 
 
+def bad_point(state, i, j):
+    if state.state[i,j] == 0:
+        return False
+    elif (i - 1) >= 0 and state.state[i - 1, j] == 0:
+        return True
+    elif (j + 1) <= state.board_w - 1 and state.state[i, j + 1] == 0:
+        return True
+    elif (j - 1) >= 0 and state.state[i, j - 1] == 0:
+        return True
+    elif (i + 1) <= state.board_h - 1 and state.state[i + 1, j] == 0:
+        return True
+    return False
+
+
+def bad_state(state, points):
+    for (i,j) in points:
+        if bad_point(state, i, j):
+            return True
+    return False
+
+
 def distanse_to_points(state, points):
     distance_from_corners = 0
-    max_radius = max(state.board_w, state.board_h) 
+    max_radius = max(state.board_w, state.board_h)
     radius = 0
     for (i,j) in points:
         while(is_point_area_empty(state, radius, i, j) and radius < max_radius):
             radius += 1
-        distance_from_corners += radius
+        if distance_from_corners <= radius:
+            distance_from_corners = radius
         radius = 0
+    if bad_state(state, points):
+        return state.board_w * state.board_h
     return distance_from_corners
 
 
@@ -144,9 +169,13 @@ def blokus_corners_heuristic(state, problem):
     return distanse_to_points(state, [(state.board_h-1, state.board_w-1), (state.board_h-1, 0), (0, state.board_w-1), (0,0)])
 
 
+def flip_targets (targets):
+    return list(map(lambda target: (target[1], target[0])))
+
+
 class BlokusCoverProblem(SearchProblem):
     def __init__(self, board_w, board_h, piece_list, starting_point=(0, 0), targets=[(0, 0)]):
-        self.targets = targets.copy()
+        self.targets = flip_targets()
         self.expanded = 0
         self.board = Board(board_w, board_h, 1, piece_list, starting_point)
 
@@ -196,7 +225,7 @@ def blokus_cover_heuristic(state, problem):
 
 class BlokusExistingBoardCoverProblem(SearchProblem):
     def __init__(self, board, targets):
-        self.targets = targets.copy()
+        self.targets = flip_targets(targets)
         self.expanded = 0
         self.board = board.__copy__()
 
@@ -327,16 +356,13 @@ class MiniContestSearch:
     """
 
     def __init__(self, board_w, board_h, piece_list, starting_point=(0, 0), targets=(0, 0)):
-        self.targets = targets.copy()
-        "*** YOUR CODE HERE ***"
+        self.blokusCoverProblem = BlokusCoverProblem(board_w, board_h, piece_list, starting_point, targets)
 
     def get_start_state(self):
         """
         Returns the start state for the search problem
         """
-        return self.board
+        return self.blokusCoverProblem.get_start_state()
 
     def solve(self):
-        "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
-
+        return a_star_search(self.blokusCoverProblem, blokus_cover_heuristic)
