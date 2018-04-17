@@ -50,7 +50,7 @@ class SearchProblem:
 
 def visit_node(problem, parents, visited, to_visit, current_state):
     descendants = problem.get_successors(current_state)
-    #descendants.reverse()
+    # descendants.reverse()
     for descendant in descendants:
         if descendant[0] not in parents:
             parents[descendant[0]] = (current_state, descendant[1], descendant[2])
@@ -79,16 +79,16 @@ def depth_first_search(problem):
     """
     "*** YOUR CODE HERE ***"
     start = problem.get_start_state()
-    current_state = start 
+    current_state = start
     parents = {}
     visited = set()
     to_visit = []
     parents, visited, to_visit = visit_node(problem, parents, visited, to_visit, current_state)
-    
+    current_state = to_visit.pop()[0]
     while(len(to_visit) > 0 and not problem.is_goal_state(current_state)):
-        current_state = to_visit.pop()[0]
         if current_state not in visited:
             parents, visited, to_visit = visit_node(problem, parents, visited, to_visit, current_state)
+        current_state = to_visit.pop()[0]
     
     # print(problem.is_goal_state(current_state))
     return get_actions_list(parents, current_state, start)
@@ -106,11 +106,12 @@ def breadth_first_search(problem):
     visited = set()
     to_visit = []
     parents, visited, to_visit = visit_node(problem, parents, visited, to_visit, current_state)
-    
+    current_state = to_visit.pop(0)[0]
     while(len(to_visit) > 0 and not problem.is_goal_state(current_state)):
-        current_state = to_visit.pop(0)[0]
         if current_state not in visited:
             parents, visited, to_visit = visit_node(problem, parents, visited, to_visit, current_state)
+        current_state = to_visit.pop(0)[0]
+
     
     # print(problem.is_goal_state(current_state))
     return get_actions_list(parents, current_state, start)
