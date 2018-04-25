@@ -1,0 +1,1389 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass heb-article
+\use_default_options true
+\maintain_unincluded_children false
+\language hebrew
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing onehalf
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2cm
+\topmargin 2cm
+\rightmargin 2cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip smallskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+תרגיל תאורטי
+\family roman
+\series medium
+\shape up
+\size largest
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+1
+\family roman
+\series medium
+\shape up
+\size largest
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+- בינה מלאכותית
+\end_layout
+
+\begin_layout Author
+מגישים: גד זלצברג-
+\family roman
+\series medium
+\shape up
+\size large
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+201116605
+\family roman
+\series medium
+\shape up
+\size large
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\begin_inset Formula $gaditzc$
+\end_inset
+
+, אור בר יעקב - 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+300486396
+\family roman
+\series medium
+\shape up
+\size large
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\begin_inset Formula $orbarya$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Section*
+שאלה
+\family roman
+\series bold
+\shape up
+\size larger
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+1
+\numeric off
+:
+\end_layout
+
+\begin_layout Standard
+לא נכון!!!!! דוגמא נגדית:
+\end_layout
+
+\begin_layout Standard
+נניח שאנחנו מעוניינים 
+\end_layout
+
+\begin_layout Section*
+שאלה
+\family roman
+\series bold
+\shape up
+\size larger
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+2
+\numeric off
+:
+\end_layout
+
+\begin_layout Standard
+נתבונן בבעיה )הטריוויאלית( הבאה:
+\end_layout
+
+\begin_layout Standard
+אנו מעוניינים לכסות את כל המשבצות של לוח שחמט בגודל 
+\begin_inset Formula $n\times n$
+\end_inset
+
+ בעזרת חלקי דמקה.
+\end_layout
+
+\begin_layout Standard
+כעת נבחין כי אלגוריתם 
+\begin_inset Formula $DFS$
+\end_inset
+
+ יכסה את הלוח לאחר 
+\begin_inset Formula $n^{2}$
+\end_inset
+
+ צעדים: בכל צעד הוא יוסיף חלק ללוח ולאחר 
+\begin_inset Formula $n^{2}$
+\end_inset
+
+ הלוח יהיה מכוסה כולו.
+\end_layout
+
+\begin_layout Standard
+מנגד, אם נגדיר 
+\begin_inset Formula $d_{\max}=n^{2}-1$
+\end_inset
+
+, נקבל שאלגוריתם 
+\begin_inset Formula $iterative\;deepening$
+\end_inset
+
+ יעבור על כל המצבים האפשריים עם 
+\begin_inset Formula $k$
+\end_inset
+
+ חלקים עבור 
+\begin_inset Formula $k\le n^{2}$
+\end_inset
+
+, כלומר 
+\begin_inset Formula $\Omega\left(2^{n}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section*
+שאלה
+\family roman
+\series bold
+\shape up
+\size larger
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+3
+\numeric off
+:
+\end_layout
+
+\begin_layout Subsection*
+\begin_inset Formula $h_{1}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+אדמיסבילי: נבחין כי בכל סדר פעולות המסתיים ב 
+\begin_inset Formula $goal$
+\end_inset
+
+ נצטרך להזיז את כל האריחים שאינם במקומם לפחות פעם אחת, מכיוון שהם יצטרכו
+ לשנות מקום למקום המתאים להם ב 
+\begin_inset Formula $goal$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Subsection*
+\begin_inset Formula $h_{2}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+אדמיסבילי: נבחין כי בכל סדר פעולות המסתיים ב 
+\begin_inset Formula $goal$
+\end_inset
+
+ נצטרך להזיז את כל האריחים שאינם במקומם למקום המתאים להם ב 
+\begin_inset Formula $goal$
+\end_inset
+
+, בכדי להעביר אריח ממקומו הנוכחי למקום המתאים לו דרוש מספר הזזות לפחות כמו
+ המרחק, והזזת אריח לא מקרבת את יתר האריחים למקומם המתאים, ולכן נקבל שמספר
+ ההזזות הדרושות הוא לפחות סכום המרחקים.
+\end_layout
+
+\begin_layout Subsection*
+\begin_inset Formula $h_{3}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+אדמיסבילי: כל אריח שמחוץ לשורה ו/או מחוץ לעמודה המרחק שלו מהמקום המתאים
+ לו גדול או שווה מ
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+2
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+או
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+1
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+בהתאמה, ולכן נקבל 
+\begin_inset Formula $h_{2}>h_{3}$
+\end_inset
+
+, ומכיוון ש
+\begin_inset Formula $h_{2}$
+\end_inset
+
+ אמיסבילית נקבל שכך גם 
+\begin_inset Formula $h_{3}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection*
+\begin_inset Formula $h_{4}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+אדמיסבילי: נבחין כי סדר פעולות אפשרי לפי חוקי המשחק הוא חוקי גם לפי 
+\begin_inset Formula $Blank-Swap$
+\end_inset
+
+, ולכן הפתרון האופטימלי לפי 
+\begin_inset Formula $Blank-Swap$
+\end_inset
+
+ קטן או שווה מהסדר האופטימלי לפי חוקי המשחק ולכן אדמיסבילי.
+\end_layout
+
+\begin_layout Subsection*
+\begin_inset Formula $h_{5}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+אדמיסבילי: נבחין כי סדר פעולות אפשרי לפי חוקי המשחק הוא חוקי גם לפי 
+\begin_inset Formula $Pair-Swap$
+\end_inset
+
+, ולכן הפתרון האופטימלי לפי 
+\begin_inset Formula $Pair-Swap$
+\end_inset
+
+ קטן או שווה מהסדר האופטימלי לפי חוקי המשחק ולכן אדמיסבילי.
+\end_layout
+
+\begin_layout Subsection*
+\begin_inset Formula $h_{6}$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+נתבונן בלוח הבא: 
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+2
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+5
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\numeric on
+8
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+ נבחין כי ע"י הזזה אחת של
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+3
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ללמטה ניתן להגיע ל 
+\begin_inset Formula $goal$
+\end_inset
+
+, בעוד שלפי היוריסטיקה המוצעת נקבל את הסדר: 
+\begin_inset Formula $31245678$
+\end_inset
+
+ ומתקיים: 
+\begin_inset Formula $3>1,\;3>2$
+\end_inset
+
+ ולכן יוחזר
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+2
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+כלומר היורסטיקה אינה אדמיסבילית.
+\end_layout
+
+\begin_layout Section*
+שאלה
+\family roman
+\series bold
+\shape up
+\size larger
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+4
+\numeric off
+:
+\end_layout
+
+\begin_layout Section*
+שאלה
+\family roman
+\series bold
+\shape up
+\size larger
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+5
+\numeric off
+:
+\end_layout
+
+\begin_layout Standard
+נסמן ב 
+\begin_inset Formula $P=\left\{ s_{0}=s_{1},...,s_{n}=t\in\mathcal{G}\right\} $
+\end_inset
+
+ את המסלול המתקבל לפי 
+\begin_inset Formula $A^{*}$
+\end_inset
+
+ עם 
+\begin_inset Formula $h$
+\end_inset
+
+ וב 
+\begin_inset Formula $P^{*}=\left\{ s_{0}=s_{1}^{*},...,s_{k}^{*}=t^{*}\in\mathcal{G}\right\} $
+\end_inset
+
+ את המסלול המתקבל לפי 
+\begin_inset Formula $A^{*}$
+\end_inset
+
+ עם 
+\begin_inset Formula $h^{*}$
+\end_inset
+
+, אזי: 
+\begin_inset Formula 
+\[
+C=^{1}g\left(t\right)\le^{2}h\left(s_{k-1}^{*}\right)+g\left(s_{k-1}^{*}\right)\le^{3}h^{*}\left(s_{k-1}^{*}\right)+g\left(s_{k-1}^{*}\right)+\epsilon\le^{4}c\left(s_{k-1}^{*},a,t\right)+g\left(s_{k-1}^{*}\right)+\epsilon=^{5}C^{*}+\epsilon
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\numeric on
+1
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ - מהגדרה.
+\end_layout
+
+\begin_layout Standard
+
+\numeric on
+2
+\numeric off
+ - נבחין כי אם נניח בשלילה ש 
+\begin_inset Formula $f\left(s_{k-1}^{*}\right)=h\left(s_{k-1}^{*}\right)+g\left(s_{k-1}^{*}\right)<g\left(t\right)=f\left(t\right)$
+\end_inset
+
+, אזי מהגדרת 
+\begin_inset Formula $A^{*}$
+\end_inset
+
+ היינו מוצאים את 
+\begin_inset Formula $s_{k-1}^{*}$
+\end_inset
+
+ מהפרונטיר ואז 
+\begin_inset Formula $t^{*}$
+\end_inset
+
+ היה נכנס לפרונטיר והיינו מוציאים אותו בתור פתרון אופטימלי )אלא אם 
+\begin_inset Formula $C=g\left(t\right)=g\left(t^{*}\right)=C^{*}$
+\end_inset
+
+ ואז הטענה נכונה(.
+ כמובן ש 
+\begin_inset Formula $s_{k-1}^{*}$
+\end_inset
+
+ נמצא בפרונטיר מכיוון שלפי מה שהנחנו בשלילה מתקיים: 
+\begin_inset Formula $f\left(s_{k-1}^{*}\right)<f\left(t\right)$
+\end_inset
+
+ ולכן אם 
+\begin_inset Formula $t$
+\end_inset
+
+בפרונטיר אזי בהכרח גם 
+\begin_inset Formula $s_{k-1}^{*}$
+\end_inset
+
+ נמצא.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\numeric on
+3
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+- מהנתון ש: 
+\begin_inset Formula $h<h^{*}+\epsilon$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+
+\numeric on
+4
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+- מאדמיסביליות של 
+\begin_inset Formula $h$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+
+\numeric on
+5
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+- מהגדרת 
+\begin_inset Formula $C^{*}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section*
+שאלה
+\family roman
+\series bold
+\shape up
+\size larger
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+6
+\numeric off
+:
+\end_layout
+
+\begin_layout Standard
+יהא 
+\begin_inset Formula $s_{1}\in S$
+\end_inset
+
+, אזי עבור 
+\begin_inset Formula $s_{1}...s_{n}\in\mathcal{G}$
+\end_inset
+
+ המסלול הקצר ביותר המסתיים בפתרון מתקיים:
+\begin_inset Formula 
+\[
+h\left(s_{1}\right)\le c\left(s_{1},a_{1},s_{2}\right)+h\left(s_{2}\right)\le...\le\sum_{i=1}^{n-1}c\left(s_{i},a_{i},s_{i+1}\right)+h\left(s_{n}\right)=\sum_{i=1}^{n-1}c\left(s_{i},a_{i},s_{i+1}\right)=h^{*}\left(s_{1}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+האי שיוויונות מתקיימים מהקונסיסטנטיות.
+\end_layout
+
+\begin_layout Section*
+שאלה
+\family roman
+\series bold
+\shape up
+\size larger
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+7
+\numeric off
+:
+\end_layout
+
+\begin_layout Standard
+לא נכון!!! נתבונן בדוגמא הנגדית הבאה:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename 7.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\left\{ c\right\} =\mathcal{G}$
+\end_inset
+
+, 
+\begin_inset Formula $a=s_{0}$
+\end_inset
+
+, ונגדיר:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $c\left(a,b\right)=c\left(b,c\right)=3$
+\end_inset
+
+, 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $h_{1}\left(a\right)=6$
+\end_inset
+
+, 
+\begin_inset Formula $h_{1}\left(b\right)=3$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $h_{2}\left(a\right)=6$
+\end_inset
+
+, 
+\begin_inset Formula $h_{2}\left(b\right)=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+אז נקבל: 
+\begin_inset Formula 
+\[
+h_{2}\left(a\right)=6>3+0=c\left(a,b\right)+h_{2}\left(b\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+כלומר 
+\begin_inset Formula $h_{2}$
+\end_inset
+
+ איננה קונסיסטנטית, בעוד ש 
+\begin_inset Formula $h_{1}$
+\end_inset
+
+ שולט על 
+\begin_inset Formula $h_{2}$
+\end_inset
+
+ ו
+\begin_inset Formula $h_{1}$
+\end_inset
+
+ קונסיסטנטית.
+\end_layout
+
+\begin_layout Section*
+שאלה
+\family roman
+\series bold
+\shape up
+\size larger
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+8
+\numeric off
+:
+\end_layout
+
+\begin_layout Standard
+ראינו בשיעור כי אם עלות הפתרון האופטימלי היא 
+\begin_inset Formula $C^{*}$
+\end_inset
+
+ אזי 
+\begin_inset Formula $A^{*}$
+\end_inset
+
+ עם היוריסטיקה 
+\begin_inset Formula $h$
+\end_inset
+
+ אדמיסבילית מבקר בדיוק בקבוצה: 
+\begin_inset Formula $\left\{ s|f\left(s\right)<C^{*}\right\} =\left\{ s|h\left(s\right)+g\left(s\right)<C^{*}\right\} $
+\end_inset
+
+ ולכן נקבל שקבוצת הקודקדים בהם מבקר 
+\begin_inset Formula $A^{*}$
+\end_inset
+
+ עם 
+\begin_inset Formula $h_{2}$
+\end_inset
+
+ הם בדיוק 
+\begin_inset Formula $\left\{ s|h_{2}\left(s\right)+g\left(s\right)<C^{*}\right\} $
+\end_inset
+
+ ועם 
+\begin_inset Formula $h_{1}$
+\end_inset
+
+ הם בדיוק 
+\begin_inset Formula $\left\{ s|h_{1}\left(s\right)+g\left(s\right)<C^{*}\right\} $
+\end_inset
+
+, וקל לראות שאם 
+\begin_inset Formula $h_{1}<h_{2}$
+\end_inset
+
+ אזי 
+\begin_inset Formula $\left\{ s|h_{1}\left(s\right)+g\left(s\right)<C^{*}\right\} \supseteq\left\{ s|h_{2}\left(s\right)+g\left(s\right)<C^{*}\right\} $
+\end_inset
+
+ כנדרש.
+\end_layout
+
+\begin_layout Section*
+שאלה
+\family roman
+\series bold
+\shape up
+\size larger
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+9
+\numeric off
+:
+\end_layout
+
+\begin_layout Standard
+המצבים הם תתי קבוצות 
+\begin_inset Formula $s_{i}$
+\end_inset
+
+ של 
+\begin_inset Formula $\left[n\right]$
+\end_inset
+
+ המקיימות 
+\begin_inset Formula $\sum_{j\in s_{i}}w_{j}\le W$
+\end_inset
+
+, וקיימת קשת מכל מצב 
+\begin_inset Formula $s_{i}$
+\end_inset
+
+ למצב 
+\begin_inset Formula $s_{j}$
+\end_inset
+
+ המקיים: 
+\begin_inset Formula $s_{j}=s_{i}\cup\left\{ k\right\} $
+\end_inset
+
+ עבור 
+\begin_inset Formula $k\in\left[n\right]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+היינו מגדירים 
+\end_layout
+
+\end_body
+\end_document
