@@ -1,5 +1,5 @@
-#LyX 2.2 created this file. For more info see http://www.lyx.org/
-\lyxformat 508
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
 \begin_document
 \begin_header
 \save_transient_properties true
@@ -21,6 +21,8 @@
 \font_osf false
 \font_sf_scale 100 100
 \font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -50,6 +52,7 @@
 \suppress_date false
 \justification true
 \use_refstyle 1
+\use_minted 0
 \index Index
 \shortcut idx
 \color #008000
@@ -62,7 +65,10 @@
 \tocdepth 3
 \paragraph_separation skip
 \defskip smallskip
-\quotes_language english
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
@@ -1362,11 +1368,7 @@ h_{2}\left(a\right)=6>3+0=c\left(a,b\right)+h_{2}\left(b\right)
 \begin_inset Formula $\left[n\right]$
 \end_inset
 
- המקיימות 
-\begin_inset Formula $\sum_{j\in s_{i}}w_{j}\le W$
-\end_inset
-
-, וקיימת קשת מכל מצב 
+ , וקיימת קשת מכל מצב 
 \begin_inset Formula $s_{i}$
 \end_inset
 
@@ -1382,12 +1384,15 @@ h_{2}\left(a\right)=6>3+0=c\left(a,b\right)+h_{2}\left(b\right)
 \begin_inset Formula $k\in\left[n\right]$
 \end_inset
 
-.
+ .
 \end_layout
 
 \begin_layout Standard
 הפונקציה שנרצה להביא למקסימום היא: 
-\begin_inset Formula $\sum_{j\in s_{i}}w_{j}$
+\begin_inset Formula $f(s_{i})=\begin{cases}
+\sum_{j\in s_{i}}w_{j} & \sum_{j\in s_{i}}w_{j}\leq W\\
+0 & \text{o.w}
+\end{cases}$
 \end_inset
 
 , ונעשה זאת בדרך הבאה: נגדיר עבור כל אובייקט 
@@ -1419,6 +1424,7 @@ h_{2}\left(a\right)=6>3+0=c\left(a,b\right)+h_{2}\left(b\right)
 \end_inset
 
 .
+ 
 \end_layout
 
 \begin_layout Subsection*
@@ -1440,12 +1446,191 @@ h_{2}\left(a\right)=6>3+0=c\left(a,b\right)+h_{2}\left(b\right)
 סעיף ג:
 \end_layout
 
-\begin_layout Subsection*
-סעיף ד:
+\begin_layout Standard
+נקודד את המצבים כמחרוזות בינאריות באורך n כאשר במיקום הi יהיה 1 אם באותו
+ מצב החפץ הi נמצא בתיק ו0 אם לא.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Formula $\text{\text{Fitness Function}}$
+\end_inset
 
+- במקרה של מצב שעונה על דרישות המשקל הפונ' תחזיר את סכום המשקלים אחרת תחזיר
+ 0.
+\begin_inset Formula $f(s_{i})=\begin{cases}
+\sum_{j\in s_{i}}w_{j} & \sum_{j\in s_{i}}w_{j}\leq W\\
+0 & \text{o.w}
+\end{cases}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\text{Crossover operator}$
+\end_inset
+
+- נבחר
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+2
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+הורים רנדומלית מתוך האוכלוסיה, נבנה ילד ע
+\begin_inset Quotes erd
+\end_inset
+
+י כך שניקח את 
+\begin_inset Formula $\text{\ensuremath{\frac{n}{2}}}$
+\end_inset
+
+ הביטים הראשונים מהורה
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+1
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ואת 
+\begin_inset Formula $\text{\ensuremath{\frac{n}{2}}}$
+\end_inset
+
+ הביטים האחרונים מהורה
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+2
+\numeric off
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\text{Mutation Operator}$
+\end_inset
+
+- בהסתברות מסוימת, נחליף כל ביט בילד
+\end_layout
+
+\begin_layout Subsection*
+סעיף ד:
 \end_layout
 
 \end_body
