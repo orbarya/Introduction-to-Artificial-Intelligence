@@ -243,11 +243,93 @@
 \end_layout
 
 \begin_layout Standard
-לא נכון!!!!! דוגמא נגדית:
+הטענה נכונה תחת ההנחות הבאות: 
 \end_layout
 
 \begin_layout Standard
-נניח שאנחנו מעוניינים 
+
+\numeric on
+1
+\numeric off
+.
+ מדובר באלגוריתם 
+\begin_inset Formula $\text{ID-DFS GRAPH-SEARCH}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\numeric on
+2
+\numeric off
+.
+ מעבר בין כל שני מצבים הוא בעלות קבועה.
+\end_layout
+
+\begin_layout Standard
+
+\numeric on
+3
+\numeric off
+.
+ 
+\begin_inset Formula $\text{b}$
+\end_inset
+
+- סופי, 
+\begin_inset Formula $m$
+\end_inset
+
+- סופי
+\end_layout
+
+\begin_layout Standard
+האלגוריתם ימצא פיתרון אופטימלי או שיחזיר 
+\begin_inset Quotes eld
+\end_inset
+
+אין פיתרון
+\begin_inset Quotes erd
+\end_inset
+
+: נניח שקיים פיתרון ונסמן את עומק הפיתרון האופטימלי בd, אזי לכל 
+\begin_inset Formula $d_{max}<d$
+\end_inset
+
+ האלגוריתם ירחיב את כל הצמתים במרחק 
+\begin_inset Formula $d_{max}$
+\end_inset
+
+, כיוון שb סופי יש מספר סופי של צמתים כאלה ולכן האלגוריתם יסיים להרחיב אותם.
+ כאשר יגיע ל 
+\begin_inset Formula $d_{max}=\text{d}$
+\end_inset
+
+ אזי האלגוריתם ימצא את אחד הפתרונות עם עומק d, כלומר אחד הפתרונות האופטימליים.
+\end_layout
+
+\begin_layout Standard
+אם אין פיתרון, האלגוריתם ירוץ לכל 
+\begin_inset Formula $d_{max}\leq\text{m}$
+\end_inset
+
+ כאשר נגיע ל
+\begin_inset Formula $d_{max}=m+1$
+\end_inset
+
+ נוכל לזהות את המצב הזה אם נשמור עבור כל עומק האם פגשנו בצמתים שלא הוספנו
+ אותם ל
+\begin_inset Formula $\text{fringe}$
+\end_inset
+
+ בגלל שהעומק שלהם גדול מדיי.
+ כל עוד פגשנו בצומת כזה, נמשיך גם לרמה הבאה של 
+\begin_inset Formula $d_{max}$
+\end_inset
+
+, אחרת נדע שהגענו לעומק המקסימלי ולא מצאנו פיתרון.
 \end_layout
 
 \begin_layout Section*
@@ -836,6 +918,201 @@
 :
 \end_layout
 
+\begin_layout Standard
+נסמן 
+\begin_inset Formula $n=N\cdot N-1$
+\end_inset
+
+, נגדיר "הפיכה" כמו ב 
+\begin_inset Formula $h_{6}$
+\end_inset
+
+ בשאלה בקודמת, ונטען את הטענות הבאות:
+\end_layout
+
+\begin_layout Standard
+
+\numeric on
+1
+\numeric off
+.
+ אם 
+\begin_inset Formula $N$
+\end_inset
+
+ אי זוגי אזי הפאזל פתיר אם ורק אם מספר ה"הפיכות" הוא זוגי במצב הקלט.
+\end_layout
+
+\begin_layout Standard
+
+\numeric on
+2
+\numeric off
+.
+ אם 
+\begin_inset Formula $N$
+\end_inset
+
+ זוגי הפאזל יהיה פתיר אם ורק אם מתקיים אחד משני התנאים הבאים:
+\end_layout
+
+\begin_layout Standard
+תנאי א: האריח החסר נמצא בשורה זוגית )בספירה מלמטה( ומספר ה"הפיכות" הוא אי
+ זוגי.
+\end_layout
+
+\begin_layout Standard
+תנאי ב: האריח החסר נמצא בשורה אי זוגית )בספירה מלמטה( ומספר ה"הפיכות" הוא
+ "זוגי".
+\end_layout
+
+\begin_layout Standard
+הוכחת טענה
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+1
+\numeric off
+:
+\end_layout
+
+\begin_layout Standard
+נבחין כי הזזת אריח בתוך השורה אינה משפיעה על מספר ההיפוכים, מנגד הזזת אריח
+ משורה לשורה משפיע על 
+\begin_inset Formula $N-1$
+\end_inset
+
+ היפוכים )יוצר/מבטל היפוכים(, ולכן במקרה ש 
+\begin_inset Formula $N$
+\end_inset
+
+ אי זוגי נקבל שלא משנה כמה הזזות נעשה ישאר מספר אי זוגי של הזזות ובפרט לא
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+0
+\numeric off
+, כלומר הלוח לא פתיר.
+\end_layout
+
+\begin_layout Standard
+הוכחת טענה
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+2
+\numeric off
+:
+\end_layout
+
+\begin_layout Standard
+עבור תנאי א' שוב נבחין כי הזזת אריח בתוך השורה אינה משפיעה על מספר ההיפוכים,
+ בעוד שהזזת אריח משורה לשורה משפיעה על 
+\begin_inset Formula $N-1$
+\end_inset
+
+ היפוכים )יוצר/מבטל היפוכים(, ולכן במקרה ש 
+\begin_inset Formula $N$
+\end_inset
+
+ זוגי נקבל שהעברה של האריח הריק בין שורות תשנה את מספר ה"הפיכות" מזוגי לאי
+ זוגי ולהיפך, ולכן יוצא שאם מספר ה"הפיכות" היה אי זוגי והאריח החסר היה בשורה
+ זוגית בכל מצב בו האריח נמצא בשורה זוגית )ובפרט בשורה העליונה ביותר( יהיה
+ מספר היפוכים אי זוגי )ובפרט לא
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+0
+\numeric off
+( ולכן הלוח אינו פתיר.
+ ניתן לראות שתנאי ב' מתקיים מכיוון שהעברת האריח החסר לשורה אחרת תביא אותנו
+ למצב דומה לתנאי א'.
+\end_layout
+
 \begin_layout Section*
 שאלה
 \family roman
@@ -1390,12 +1667,12 @@ h_{2}\left(a\right)=6>3+0=c\left(a,b\right)+h_{2}\left(b\right)
 \begin_layout Standard
 הפונקציה שנרצה להביא למקסימום היא: 
 \begin_inset Formula $f(s_{i})=\begin{cases}
-\sum_{j\in s_{i}}w_{j} & \sum_{j\in s_{i}}w_{j}\leq W\\
+\sum_{j\in s_{i}}\frac{v_{k}}{w_{k}} & \sum_{j\in s_{i}}w_{j}\leq W\\
 0 & \text{o.w}
 \end{cases}$
 \end_inset
 
-, ונעשה זאת בדרך הבאה: נגדיר עבור כל אובייקט 
+, האלגוריתם יתבצע באופן הבא : נגדיר עבור כל אובייקט 
 \begin_inset Formula $k$
 \end_inset
 
@@ -1424,7 +1701,7 @@ h_{2}\left(a\right)=6>3+0=c\left(a,b\right)+h_{2}\left(b\right)
 \end_inset
 
 .
- 
+ נעצור כאשר לא קיים מצב שכן ששייך לS.
 \end_layout
 
 \begin_layout Subsection*
@@ -1440,6 +1717,18 @@ h_{2}\left(a\right)=6>3+0=c\left(a,b\right)+h_{2}\left(b\right)
 
  מכיל מרכיב רנדומי, ולכן הוא יכול להגיע לכל תוצאה אפשרית ובפרט גם פחות או
  יותר טובה מהתוצאה אליה מגיע האלג' שהצענו.
+\end_layout
+
+\begin_layout Standard
+אם זאת, 
+\begin_inset Formula $\text{simulated annealing}$
+\end_inset
+
+ יברח ממקסימום מקומי לעומת 
+\begin_inset Formula $\text{Gradient Descent}$
+\end_inset
+
+ ולכן, אנו חושבים שהוא יגיע לתוצאה טובה יותר.
 \end_layout
 
 \begin_layout Subsection*
@@ -1626,11 +1915,416 @@ h_{2}\left(a\right)=6>3+0=c\left(a,b\right)+h_{2}\left(b\right)
 \begin_inset Formula $\text{Mutation Operator}$
 \end_inset
 
-- בהסתברות מסוימת, נחליף כל ביט בילד
+- לכל מצב באוכלוסיה החדשה, עבור כל ביט נגריל בהסתברות p האם להחליף את הביט
+ או לא.
 \end_layout
 
 \begin_layout Subsection*
 סעיף ד:
+\end_layout
+
+\begin_layout Standard
+שתי השיטות מתמודדות עם הגעה למקסימום מקומי ע
+\begin_inset Quotes erd
+\end_inset
+
+י הכנסת רנדומיות בבחירת המצב הבא.
+ עם זאת, אלגוריתם גנטי מחפש במרחב החיפוש בהרבה מקומות בו זמנית לעומת האלגוריתמים
+ האיטרטיביים ולכן אנו חושבים שהוא יגיע לתוצאות טובות יותר.
+\end_layout
+
+\begin_layout Section*
+שאלה
+\family roman
+\series bold
+\shape up
+\size larger
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+10
+\numeric off
+:
+\end_layout
+
+\begin_layout Standard
+נמספר את התחנות ב 
+\begin_inset Formula $1...m$
+\end_inset
+
+, את המסילות בין התחנות ב 
+\begin_inset Formula $1...n$
+\end_inset
+
+ ואת הרכבות ב 
+\begin_inset Formula $1...l$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+כעת נניח דיסקרטיזציה של הזמנים לפי דקות, ונחלק כל מסילה 
+\begin_inset Formula $r_{i}$
+\end_inset
+
+ למרחקי נסיעה של דקה ונקבל 
+\begin_inset Formula $r_{ij}$
+\end_inset
+
+ חלק מסילה באורך דקת נסיעה.
+ בנוסף נגדיר 
+\begin_inset Formula $s_{i}$
+\end_inset
+
+ להיות התחנה ה 
+\begin_inset Formula $i$
+\end_inset
+
+ )כולל תחנות התחלה( ונגדיר את המשתנים 
+\begin_inset Formula $x_{it}$
+\end_inset
+
+ להיות "מקום הרכבת ה 
+\begin_inset Formula $i$
+\end_inset
+
+בזמן 
+\begin_inset Formula $t$
+\end_inset
+
+".
+ 
+\end_layout
+
+\begin_layout Subsubsection*
+קבוצת המשתנים תהיה:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $X=\left\{ x_{it}|i\in\left[l\right],t\in\left[\#minuts\;in\;day\right]\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+הדומיין יהיה:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $D=\left\{ s_{i}|i\in\left[m\right]\right\} \cup\left\{ r_{ij}|i\in\left[n\right],j\in\left[\#parts\;of\;railroad\;i\right]\right\} $
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+האילוצים שנגדיר יהיו: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $-$
+\end_inset
+
+ עבור כל רכבת נגדיר אילוץ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\left(x_{it},x_{it+1}\right)\in & \left\{ \left(r_{ij},r_{ij+1}\right)|i\in\left[n\right],j,j+1\in\left[\#parts\;of\;railroad\;i\right]\right\} \\
+ & \cup\left\{ \left(r_{ij},s_{k}\right)|r_{ij}\;is\;last\;part\;of\;railroad\;before\;s_{k}\right\} \\
+ & \cup\left\{ \left(s_{k},r_{i1}\right)|r_{ij}\;is\;first\;part\;of\;railroad\;after\;s_{k}\;in\;the\;train\;routs\right\} \\
+ & \cup\left\{ \left(s_{k},s_{k}\right)|s_{k}\;is\;station\right\} 
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+כלומר כל רכבת צריכה להיות בזמנים עוקבים או בשני קטעי מסילה עוקבים או בתחנה
+ העוקבת לקטע מסילה או בקטע מסילה הנמצא במסלול הרכבת ועוקב לתחנה.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $-$
+\end_inset
+
+ עבור כל תחנה 
+\begin_inset Formula $s_{i}$
+\end_inset
+
+, אם המספר המקסימלי של רכבות שיכולות להיות בתחנה בזמן נתון הוא 
+\begin_inset Formula $k$
+\end_inset
+
+, נגדיר לכל 
+\begin_inset Formula $t\in\left[\#minuts\;in\;day\right]$
+\end_inset
+
+ את האילוץ:
+\begin_inset Formula 
+\[
+\left(x_{1t},...x_{lt}\right)\in\left\{ \left(x_{1t},...x_{lt}\right)|\left|\left\{ x_{jt}|x_{jt}=s_{i}\right\} \right|\le k\right\} 
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+כלומר מספר הרכבות הנמצאות בתחנה 
+\begin_inset Formula $s_{i}$
+\end_inset
+
+ בזמן 
+\begin_inset Formula $t$
+\end_inset
+
+ קטן או שווה ל 
+\begin_inset Formula $k$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $-$
+\end_inset
+
+ עבור כל מסילה 
+\begin_inset Formula $r_{i}=\left\{ r_{ij}|j\in\left[\#parts\;of\;railroad\;i\right]\right\} $
+\end_inset
+
+ נגדיר לכל 
+\begin_inset Formula $t\in\left[\#minuts\;in\;day\right]$
+\end_inset
+
+ את האילוץ:
+\begin_inset Formula 
+\[
+\left(x_{1t},...,x_{lt}\right)\in\left\{ \left(x_{1t},...,x_{lt}\right)|\left|\left\{ x_{jt}|x_{jt}\in r_{i}\right\} \right|\le1\right\} 
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+כלומר מספר הרכבות הנמצאות בקטע המסילה 
+\begin_inset Formula $r_{i}$
+\end_inset
+
+ בזמן 
+\begin_inset Formula $t$
+\end_inset
+
+ קטן או שווה ל
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+1
+\numeric off
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $-$
+\end_inset
+
+ עבור כל רכבת 
+\begin_inset Formula $j$
+\end_inset
+
+, אם זמן היציאה שלה מהתחנה הראשונה 
+\begin_inset Formula $s_{i}$
+\end_inset
+
+ הוא 
+\begin_inset Formula $T$
+\end_inset
+
+, ו 
+\begin_inset Formula $r_{k1}$
+\end_inset
+
+ הוא קטע המסילה היוצא מהתחנה בכיוון המסלול של הרכבת, אז נגדיר את האילוץ:
+\begin_inset Formula 
+\[
+x_{jT+1}=r_{k1}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+היוריסטיקות טובות יהיו:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $minimum\;remaining\;values$
+\end_inset
+
+: מכיוון שחלק מהאילוצים יהיה ניתן לספק בדרכים רבות )למשל אילוץ על מספר הרכבות
+ בתחנה- אם 
+\begin_inset Formula $k$
+\end_inset
+
+ הוא המספר המקסימלי של רכבות בתחנה יש סדר גודל של 
+\begin_inset Formula $\left(\begin{array}{c}
+l\\
+k
+\end{array}\right)$
+\end_inset
+
+ דרכים לספק את האילוץ(, וחלק אחר ניתן לספק ביחידות )למשל- אם רכבת התחילה
+ נסיעה על מסילה היא בהכרח תמשיך אותה ביחידת הזמן הבאה(, אז יהיה הגיוני יותר
+ להתחיל לספק את האילוצים המצומצמים יותר ובאופן כזה לצמצם אפשרויות לאילוצים
+ האחרים.
+\end_layout
+
+\begin_layout Section*
+שאלה
+\family roman
+\series bold
+\shape up
+\size larger
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ 
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\numeric on
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+11
+\numeric off
+:
+\end_layout
+
+\begin_layout Standard
+נתבונן בעץ המשחק הבא )שחקן ה 
+\begin_inset Formula $\max$
+\end_inset
+
+ מתחיל(:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename /home/or/Msc/Introduction-to-Artificial-Intelligence/ex1-theoretical/11.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+נבחין כי אם מרחיבים את הצמתים בעץ משמאל לימין, מוצאים לאחר ביקור בקודקוד
+ הראשון ששחקן ה 
+\begin_inset Formula $\max$
+\end_inset
+
+ מסוגל לכפות על ה 
+\begin_inset Formula $\min$
+\end_inset
+
+ סיום ב
+\numeric on
+4
+\numeric off
+, ובבדיקת תת העץ הימני מתברר לאחר ביקור בעלה הראשון שבחירה של שחקן ה 
+\begin_inset Formula $\max$
+\end_inset
+
+ בתת העץ הזה תאפשר לשחקן ה 
+\begin_inset Formula $\min$
+\end_inset
+
+ לכפות על שחקן ה 
+\begin_inset Formula $\max$
+\end_inset
+
+ סיום ב
+\numeric on
+1
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\numeric off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+, מה שמביא את שחקן ה 
+\begin_inset Formula $\max$
+\end_inset
+
+ לבחור בבן השמאלי של השורש מבלי לבדוק את יתר הקדקדים בעץ.
+ כלומר מספר הקדקדים בהם יש לבקר הוא שני עלים + השורש + קדקד אחד נוסף.
 \end_layout
 
 \end_body
