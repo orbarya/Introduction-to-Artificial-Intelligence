@@ -1,3 +1,5 @@
+from math import inf
+
 import numpy as np
 import abc
 import util
@@ -48,12 +50,16 @@ class ReflexAgent(Agent):
         # Useful information you can extract from a GameState (game_state.py)
 
         successor_game_state = current_game_state.generate_successor(action=action)
+        bonus = 1
+        if action == Action.LEFT or action == Action.DOWN:
+            bonus = 4
         board = successor_game_state.board
         max_tile = successor_game_state.max_tile
         score = successor_game_state.score
 
         "*** YOUR CODE HERE ***"
-        return score
+        empty_tiles = successor_game_state.get_empty_tiles()[0].shape[0]
+        return bonus * score * max_tile * empty_tiles
 
 
 def score_evaluation_function(current_game_state):
@@ -110,8 +116,54 @@ class MinmaxAgent(MultiAgentSearchAgent):
             Returns the successor game state after an agent takes an action
         """
         """*** YOUR CODE HERE ***"""
-        util.raiseNotDefined()
+        legal_actions = game_state.get_legal_actions(0)
+        v = -inf
+        maximal_action = None
+        for action in legal_actions:
+            successor_value = self.min_value(game_state.generate_successor(0, action), 1)
+            if successor_value > v:
+                v = successor_value
+                maximal_action = action
+        return maximal_action
 
+    def max_value(self, game_state, depth):
+        depth = depth + 1
+
+        print('Visiting max_value with depth ' + str(depth))
+        print('The maximum depth allowed is ' + str(self.depth))
+
+        # TODO  1. Does the max_value always checks the agents moves and the min_value always checks for the opponents moves?
+        legal_actions = game_state.get_legal_actions(0)
+
+        # TODO  2. Do we test for terminal state by checking if legal_actions is an empty list?
+        if not legal_actions or depth > self.depth:
+            return self.evaluation_function(game_state)
+        v = -inf
+
+        successors = self.get_successors(0, game_state, legal_actions)
+        for successor in successors:
+            v = max(v, self.min_value(successor, depth))
+        return v
+
+    def min_value(self, game_state, depth):
+
+        # TODO  1. Does the max_value always checks the agents moves and the min_value always checks for the opponents moves?
+        legal_actions = game_state.get_legal_actions(1)
+
+        # TODO  2. Do we test for terminal state by checking if legal_actions is an empty list?
+        if not legal_actions:
+            return self.evaluation_function(game_state)
+        v = inf
+        successors = self.get_successors(1, game_state, legal_actions)
+        for successor in successors:
+            v = min(v, self.max_value(successor, depth))
+        return v
+
+    def get_successors(self, agent_index, game_state, legal_actions):
+        successors = []
+        for legal_action in legal_actions:
+            successors.append(game_state.generate_successor(agent_index, legal_action))
+        return successors
 
 
 class AlphaBetaAgent(MultiAgentSearchAgent):
