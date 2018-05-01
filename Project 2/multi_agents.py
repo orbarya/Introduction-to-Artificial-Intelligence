@@ -129,9 +129,6 @@ class MinmaxAgent(MultiAgentSearchAgent):
     def max_value(self, game_state, depth):
         depth = depth + 1
 
-        print('Visiting max_value with depth ' + str(depth))
-        print('The maximum depth allowed is ' + str(self.depth))
-
         # TODO  1. Does the max_value always checks the agents moves and the min_value always checks for the opponents moves?
         legal_actions = game_state.get_legal_actions(0)
 
@@ -193,8 +190,33 @@ class ExpectimaxAgent(MultiAgentSearchAgent):
         legal moves.
         """
         """*** YOUR CODE HERE ***"""
-        util.raiseNotDefined()
+        legal_actions = game_state.get_legal_actions(0)
+        v = -inf
+        maximal_action = None
+        for action in legal_actions:
+            successor_value = self.min_value(game_state.generate_successor(0, action), self.depth)
+            if successor_value > v:
+                v = successor_value
+                maximal_action = action
+        return maximal_action
 
+    def min_value(self, game_state, depth):
+        score = 0
+        legal_actions = game_state.get_legal_actions(1)
+        for action in legal_actions:
+            new_game_state = game_state.generate_successor(1, action)
+            score += self.max_value(new_game_state, depth - 1)
+        return score / len(legal_actions)
+
+    def max_value(self, game_state, depth):
+        if depth is 0:
+            return self.evaluation_function(game_state)
+        score = 0
+        legal_actions = game_state.get_legal_actions(0)
+        for action in legal_actions:
+            new_game_state = game_state.generate_successor(0, action)
+            score = max(score, self.min_value(new_game_state, depth))
+        return score
 
 
 
