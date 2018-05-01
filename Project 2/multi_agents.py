@@ -96,6 +96,13 @@ class MultiAgentSearchAgent(Agent):
     def get_action(self, game_state):
         return
 
+    @staticmethod
+    def get_successors(agent_index, game_state, legal_actions):
+        successors = []
+        for legal_action in legal_actions:
+            successors.append(game_state.generate_successor(agent_index, legal_action))
+        return successors
+
 
 class MinmaxAgent(MultiAgentSearchAgent):
     def get_action(self, game_state):
@@ -137,7 +144,7 @@ class MinmaxAgent(MultiAgentSearchAgent):
             return self.evaluation_function(game_state)
         v = -inf
 
-        successors = self.get_successors(0, game_state, legal_actions)
+        successors = MultiAgentSearchAgent.get_successors(0, game_state, legal_actions)
         for successor in successors:
             v = max(v, self.min_value(successor, depth))
         return v
@@ -151,16 +158,10 @@ class MinmaxAgent(MultiAgentSearchAgent):
         if not legal_actions:
             return self.evaluation_function(game_state)
         v = inf
-        successors = self.get_successors(1, game_state, legal_actions)
+        successors = MultiAgentSearchAgent.get_successors(1, game_state, legal_actions)
         for successor in successors:
             v = min(v, self.max_value(successor, depth))
         return v
-
-    def get_successors(self, agent_index, game_state, legal_actions):
-        successors = []
-        for legal_action in legal_actions:
-            successors.append(game_state.generate_successor(agent_index, legal_action))
-        return successors
 
 
 class AlphaBetaAgent(MultiAgentSearchAgent):
@@ -173,8 +174,45 @@ class AlphaBetaAgent(MultiAgentSearchAgent):
         Returns the minimax action using self.depth and self.evaluationFunction
         """
         """*** YOUR CODE HERE ***"""
-        util.raiseNotDefined()
+        legal_actions = game_state.get_legal_actions(0)
+        v = -inf
+        maximal_action = None
+        for action in legal_actions:
+            successor_value = self.min_value(game_state.generate_successor(0, action), 1, -inf, inf)
+            if successor_value > v:
+                v = successor_value
+                maximal_action = action
+        return maximal_action
 
+    def max_value(self, game_state, depth, alpha, beta):
+        depth = depth + 1
+
+        legal_actions = game_state.get_legal_actions(0)
+        if not legal_actions or depth > self.depth:
+            return self.evaluation_function(game_state)
+        v = -inf
+
+        successors = MultiAgentSearchAgent.get_successors(0, game_state, legal_actions)
+        for successor in successors:
+            v = max(v, self.min_value(successor, depth, alpha, beta))
+            if v >= beta:
+                return v
+            alpha = max(alpha, v)
+        return v
+
+    def min_value(self, game_state, depth, alpha, beta):
+        legal_actions = game_state.get_legal_actions(1)
+        if not legal_actions:
+            return self.evaluation_function(game_state)
+        v = inf
+
+        successors = MultiAgentSearchAgent.get_successors(1, game_state, legal_actions)
+        for successor in successors:
+            v = min(v, self.max_value(successor, depth, alpha, beta))
+            if v <= alpha:
+                return v
+            beta = min(beta, v)
+        return v
 
 
 class ExpectimaxAgent(MultiAgentSearchAgent):
