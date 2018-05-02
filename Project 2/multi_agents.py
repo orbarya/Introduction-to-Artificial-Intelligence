@@ -5,6 +5,8 @@ import abc
 import util
 from game import Agent, Action
 
+weights = None
+
 
 class ReflexAgent(Agent):
     """
@@ -59,7 +61,12 @@ class ReflexAgent(Agent):
 
         "*** YOUR CODE HERE ***"
         empty_tiles = successor_game_state.get_empty_tiles()[0].shape[0]
-        return bonus * score * max_tile * empty_tiles
+        # distances = np.indices(current_game_state.shape)[0] + np.indices(current_game_state.shape)[1]
+        # distances /= current_game_state.shape[0] + current_game_state.shape[1]
+        # print(distances)
+        if current_game_state.board[0,0] == np.max(current_game_state.board):
+            score += np.max(current_game_state.board)
+        return score
 
 
 def score_evaluation_function(current_game_state):
@@ -265,8 +272,24 @@ def better_evaluation_function(current_game_state):
 
     DESCRIPTION: <write something here so we know what you did>
     """
+    score = current_game_state.score
+
     "*** YOUR CODE HERE ***"
-    util.raiseNotDefined()
+    global weights
+    if weights is None:
+        corner = np.indices(current_game_state.board.shape)[0] + np.indices(current_game_state.board.shape)[1]
+        corner = np.array(corner) / (current_game_state.board.shape[0] + current_game_state.board.shape[1] - 2)
+        row = np.indices(current_game_state.board.shape)[0]
+        row = np.array(row) / (current_game_state.board.shape[0] - 1)
+        weights = corner + corner ** 4 +  2 * row ** 6 
+
+    elements_in_last_row = np.unique(current_game_state.board[-1])
+    score = np.sum(weights * current_game_state.board) 
+
+    # if elements_in_last_row.all() and elements_in_last_row.shape[0] == current_game_state.board.shape[1]:
+    #     score += np.max(current_game_state.board)
+
+    return score
 
 
 # Abbreviation
